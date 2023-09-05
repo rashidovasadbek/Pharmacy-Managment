@@ -1,0 +1,1 @@
+[{"Id":"16304eae-c1d9-4af3-b03a-9560d1801066","Name":"Amizon","Price":12.3,"CreateDate":"2023-01-01","ExpirationDate":"2024-01-01","Temprature":21.5,"ManufacturedCountry":"Germany","ShtrixCode":"123456543567","CountMedicine":18}]
