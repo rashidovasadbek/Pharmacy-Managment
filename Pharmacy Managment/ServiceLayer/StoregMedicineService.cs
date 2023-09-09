@@ -7,13 +7,9 @@ public class StoregMedicineService : IStoregMedicinesService
     private readonly IStoregMedicineContext _storegMedicineContext;
     public StoregMedicineService(IStoregMedicineContext storegMedicineContext)
     {
-
         _storegMedicineContext = storegMedicineContext;
     }
 
-    public StoregMedicineService()
-    {
-    }
 
     public void AddMedicine(StoregMedicine storegMedicine)
     {
@@ -49,11 +45,11 @@ public class StoregMedicineService : IStoregMedicinesService
     {
         return _storegMedicineContext.SearchMedicine(pharmacyName);
     }
-    public IEnumerable<StoregMedicine> SortMedicane()
+    public List<StoregMedicine> SortMedicane()
     {
-        var medicinesSort = _storegMedicineContext.GetAllMedicines();
-        medicinesSort.OrderBy(sort => sort.ExpirationDate);
-        return medicinesSort;
+        var allMedicines = _storegMedicineContext.GetAllMedicines();
+       var sortmedicine = allMedicines.OrderBy(sort => sort.ExpirationDate).ToList();
+        return sortmedicine;
     }
     public void UpdateMedicine(StoregMedicine storegMedicine)
     {
@@ -71,6 +67,19 @@ public class StoregMedicineService : IStoregMedicinesService
             medicinesupdate.ShtrixCode = storegMedicine.ShtrixCode;
            
             _storegMedicineContext.UpdateMedicine(medicinesupdate);
+            Console.WriteLine("Successfully updated medicine");
         }
+        else
+        {
+            Console.WriteLine("medicine not found");
+        }
+    }
+
+    public IEnumerable<StoregMedicine> OverdueMedicines()
+    {
+        var allMedicine  = _storegMedicineContext.GetAllMedicines();
+
+        var overdueMedicine = allMedicine.Where(overdue => overdue.ExpirationDate < DateOnly.FromDateTime(DateTime.Now));
+        return overdueMedicine;
     }
 }

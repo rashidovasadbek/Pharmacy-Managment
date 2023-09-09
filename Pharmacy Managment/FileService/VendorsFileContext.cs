@@ -68,7 +68,7 @@ public class VendorsFileContext : IVendorsFileContext
         if (_vendors == null)
 
         {
-            Console.WriteLine("erroe");
+            Console.WriteLine("error");
             return null;
         }
         else

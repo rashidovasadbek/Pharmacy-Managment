@@ -10,10 +10,10 @@ public class StoregMedicineContext : IStoregMedicineContext
     {
         try
         {
-            List<StoregMedicine> _medicines = new();
+            List<StoregMedicine> _medicines = new();       
             string medicine = File.ReadAllText(Medicinespath);
 
-            if (string.IsNullOrEmpty(medicine))
+            if (!string.IsNullOrEmpty(medicine))
             {
                 _medicines = JsonSerializer.Deserialize<List<StoregMedicine>>(medicine);
             }
@@ -30,18 +30,20 @@ public class StoregMedicineContext : IStoregMedicineContext
     {
         string medicine = File.ReadAllText(Medicinespath);
         var _medicineslist = JsonSerializer.Deserialize<List<StoregMedicine>>(medicine);
-        var medicinedelete = _medicineslist.Where(medicine => medicine.Name ==  pharmacyName).FirstOrDefault(); 
+        var medicinedelete = _medicineslist.Find(medicine => medicine.Name ==  pharmacyName); 
         if (medicinedelete != null)
         {
             _medicineslist.Remove(medicinedelete);
         }
+        var jsonmedicine = JsonSerializer.Serialize(_medicineslist);
+        File.WriteAllText(Medicinespath, jsonmedicine);
     }
 
-    public IEnumerable<StoregMedicine> GetAllMedicines()
+    public List<StoregMedicine> GetAllMedicines()
     {
         List<StoregMedicine> _storegMedicines = new ();
         string getMedicines = File.ReadAllText(Medicinespath);
-        if(!string.IsNullOrEmpty(getMedicines))
+        if (!string.IsNullOrEmpty(getMedicines))
         {
             _storegMedicines = JsonSerializer.Deserialize<List<StoregMedicine>>(getMedicines);
         }
@@ -60,7 +62,7 @@ public class StoregMedicineContext : IStoregMedicineContext
     {
         List<StoregMedicine> _storegMedicines = new();
         var updateMedicine = File.ReadAllText(Medicinespath);
-        if (string.IsNullOrEmpty(updateMedicine))
+        if (!string.IsNullOrEmpty(updateMedicine))
         {
             _storegMedicines = JsonSerializer.Deserialize<List<StoregMedicine>>(updateMedicine);
         }
@@ -77,5 +79,6 @@ public class StoregMedicineContext : IStoregMedicineContext
         File.WriteAllText(Medicinespath, jsonDate);
     }
 
+ 
 
 }

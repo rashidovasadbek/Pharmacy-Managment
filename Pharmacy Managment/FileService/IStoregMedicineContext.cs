@@ -7,6 +7,6 @@ public interface IStoregMedicineContext
     void UpdateMedicine(StoregMedicine storegMedicine);
     void DeleteMedicine(string pharmacyName);
     StoregMedicine SearchMedicine(string pharmacyName);
-    IEnumerable<StoregMedicine> GetAllMedicines();
+    List<StoregMedicine> GetAllMedicines();
    
 }

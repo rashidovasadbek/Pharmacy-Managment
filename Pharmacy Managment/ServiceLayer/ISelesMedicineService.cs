@@ -3,7 +3,7 @@
 namespace Pharmacy_Managment.ServiceLayer;
 public interface ISelesMedicineService
 {
-    void CalculateMedicine(SelesMedicines selesMedicines);
+    void SelesMedicine(string medicineName, int countMedicine);
     SelesMedicines OutputCheck(SelesMedicines selesMedicines);
     IEnumerable<StoregMedicine> GetAllMedicines();
 }

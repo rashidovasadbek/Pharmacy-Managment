@@ -2,7 +2,7 @@
 namespace Pharmacy_Managment.FileService;
 public interface ISelesMedicinesContext
 {
-    void CalculateMedicine(SelesMedicines selesMedicines);
+    void CalculateMedicine(string medicineName, int countMedicine);
     SelesMedicines OutputCheck(SelesMedicines selesMedicines);
 }
 

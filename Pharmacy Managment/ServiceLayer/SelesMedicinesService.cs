@@ -12,19 +12,19 @@ public class SelesMedicinesService : ISelesMedicineService
         _selesMedicinesContext = selesMedicinesContext;
         _storegMedicineContext = storegMedicineContext;
     }
-    public void CalculateMedicine(SelesMedicines selesMedicines)
+    public void SelesMedicine(string medicineName, int countMedicine)
     {
         var medicines =_storegMedicineContext.GetAllMedicines();
-        var medicinesSeleAndDelete = medicines.Where(medicine => medicine.Name == selesMedicines.Name && medicine.CountMedicine > 0).FirstOrDefault();
+        var medicinesSeleAndDelete = medicines.Where(medicine => medicine.Name == medicineName && medicine.CountMedicine > 0).FirstOrDefault();
        
         if (medicinesSeleAndDelete is  null)
         {
-            Console.WriteLine($"{selesMedicines.Name} is not found");
+            Console.WriteLine($"{medicineName} is not found");
         }
         if(medicinesSeleAndDelete is not null)
         {
-            _selesMedicinesContext.CalculateMedicine(selesMedicines);
-            medicinesSeleAndDelete.CountMedicine -= 1;
+            _selesMedicinesContext.CalculateMedicine(medicineName,countMedicine);
+            medicinesSeleAndDelete.CountMedicine -= countMedicine;
             _storegMedicineContext.UpdateMedicine(medicinesSeleAndDelete);        
         }
     }

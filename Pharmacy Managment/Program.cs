@@ -155,45 +155,37 @@ while (true)
                     StoregMedicineContext storegMedicineContext = new StoregMedicineContext();
                     IStoregMedicinesService storegMedicinesService = new StoregMedicineService(storegMedicineContext);
                     var chooseD = int.Parse(Console.ReadLine());
-                    /*  Id = Guid.NewGuid();
-                        Name = name;
-                        Price = price;
-                        CreateDate = createDate;
-                        ExpirationDate = expiration;
-                        Temprature = temprature;
-                        ManufacturedCountry = manufacturedCountry;
-                        ShtrixCode = shtrixCode;
-                        CountMedicine = countMedicine;*/
+
                     if(chooseD == 1)
                     { 
                         //Console.Write("MedicineName:");
                         //var medicineName = Console.ReadLine();
-                        var medicineName = "Amizon";
+                        var medicineName = "Pampres";
                         //Console.Write("Price:");
                         //var medicinePrice = double.Parse(Console.ReadLine());
                         var medicinePrice = 12.3;
                         //Console.WriteLine("CreateDate:");
                         //Console.Write("Year:");
                         //var createYear = int.Parse(Console.ReadLine());
-                        var createYear = 2023;
+                        var createYear = 2022;
                         //Console.Write("Month:");
                         //var createMonth = int.Parse(Console.ReadLine());
-                        var createMonth = 1;
+                        var createMonth = 2;
                         //Console.Write("Day:");
                         //var createDay = int.Parse(Console.ReadLine());
-                        var createDay = 1;
+                        var createDay = 2;
 
 
                         //Console.WriteLine("ExpirationDate:");              
                         //Console.Write("Year:");
                         //var expirationYear = int.Parse(Console.ReadLine());
-                        var expirationYear = 2024;
+                        var expirationYear = 2023;
                         //Console.Write("Month:");
                         //var expirationMonth = int.Parse(Console.ReadLine());
-                        var expirationMonth = 1;
+                        var expirationMonth = 2;
                         //Console.Write("Day:");
                         //var expirationDay = int.Parse(Console.ReadLine());
-                        var expirationDay = 1;
+                        var expirationDay = 2;
                        // Console.Write("Temprature:");
                         //var temprature = double.Parse(Console.ReadLine());
                         var temprature = 21.5;
@@ -205,9 +197,9 @@ while (true)
                         var shtrixCode = "123456543567";
                         //Console.Write("CountMedicine:");
                         //var countMedicine = int.Parse(Console.ReadLine());
-                        var countMedicine = 18;
+                        var countMedicine = 100;
                         var medicine = new StoregMedicine(medicineName, medicinePrice, new DateOnly(createYear,createMonth,createDay),  new DateOnly(expirationYear,expirationMonth,expirationDay), temprature, manufacturedCountry, shtrixCode, countMedicine);
-                        storegMedicinesService.AddMedicine(medicine);
+                        storegMedicinesService.AddMedicine(medicine);                    
                         Console.WriteLine("Succsess Add medicine");
                         Console.Write("0.Back->");
                         var chooseB0 = int.Parse(Console.ReadLine());
@@ -222,8 +214,133 @@ while (true)
                         Console.Write("Enter Name:");
                         var name = Console.ReadLine();
                         storegMedicinesService.DeleteMedicine(name);
-                        
+                        Console.Write("0.Back->");
+                        var chooseD0 = int.Parse(Console.ReadLine());
+                        if (chooseD0 == 0)
+                        {
+                            Console.Clear();
+                            ActionMedicines();
+                        }
+
                     }
+                    if(chooseD == 3)
+                    {
+                        Console.Write("Enter Name:");
+                        var name = Console.ReadLine();
+                        Console.WriteLine(storegMedicinesService.SearchMedicine(name));
+                        Console.Write("0.Back->");
+                        var chooseD0 = int.Parse(Console.ReadLine());
+                        if (chooseD0 == 0)
+                        {
+                            Console.Clear();
+                            ActionMedicines();
+                        }
+
+                    }
+                    if(chooseD == 4)
+                    {
+                        Console.WriteLine();
+                        List<StoregMedicine> _sortmedicine =  storegMedicinesService.SortMedicane();
+                        _sortmedicine.ForEach(s => Console.WriteLine(s));
+                        Console.Write("0.Back->");
+                        var chooseD0 = int.Parse(Console.ReadLine());
+                        if (chooseD0 == 0)
+                        {
+                            Console.Clear();
+                            ActionMedicines();
+                        }
+                    }
+                    if(chooseD == 5)
+                    {
+                        //Console.Write("MedicineName:");
+                        //var medicineName = Console.ReadLine();
+                        var medicineName = "Amizon";
+                        //Console.Write("Price:");
+                        //var medicinePrice = double.Parse(Console.ReadLine());
+                        var medicinePrice = 20;
+                        //Console.WriteLine("CreateDate:");
+                        //Console.Write("Year:");
+                        //var createYear = int.Parse(Console.ReadLine());
+                        var createYear = 2022;
+                        //Console.Write("Month:");
+                        //var createMonth = int.Parse(Console.ReadLine());
+                        var createMonth = 5;
+                        //Console.Write("Day:");
+                        //var createDay = int.Parse(Console.ReadLine());
+                        var createDay = 5;
+
+
+                        //Console.WriteLine("ExpirationDate:");              
+                        //Console.Write("Year:");
+                        //var expirationYear = int.Parse(Console.ReadLine());
+                        var expirationYear = 2024;
+                        //Console.Write("Month:");
+                        //var expirationMonth = int.Parse(Console.ReadLine());
+                        var expirationMonth = 5;
+                        //Console.Write("Day:");
+                        //var expirationDay = int.Parse(Console.ReadLine());
+                        var expirationDay = 5;
+                        // Console.Write("Temprature:");
+                        //var temprature = double.Parse(Console.ReadLine());
+                        var temprature = 21.5;
+                        //Console.Write("ManufacturedCountry:");
+                        //var manufacturedCountry = Console.ReadLine();
+                        var manufacturedCountry = "Germany";
+                        //Console.Write("ShtrixCode:");
+                        //var shtrixCode = Console.ReadLine();
+                        var shtrixCode = "123456543567";
+                        //Console.Write("CountMedicine:");
+                        //var countMedicine = int.Parse(Console.ReadLine());
+                        var countMedicine = 50;
+                        storegMedicineContext.UpdateMedicine(new StoregMedicine(medicineName, medicinePrice, new DateOnly(createYear, createMonth, createDay), new DateOnly(createYear, createMonth, createDay), temprature, manufacturedCountry, shtrixCode, countMedicine));
+                        Console.Write("0.Back->");
+                        var chooseD0 = int.Parse(Console.ReadLine());
+                        if (chooseD0 == 0)
+                        {
+                            Console.Clear();
+                            ActionMedicines();
+                        }
+                    }
+                    if(chooseD == 6)
+                    {
+                        IEnumerable<StoregMedicine> _overdueMedicine = storegMedicinesService.OverdueMedicines(); 
+                        foreach(var item in _overdueMedicine)
+                        {
+                            Console.WriteLine($"Name:{item.Name},\nPrice:{item.Price},\nCreateDate:{item.CreateDate},\nExpirationDate:{item.ExpirationDate},\nTemprature:{item.Temprature},\nManufacturedCountry:{item.ManufacturedCountry},\nShtrixCode:{item.ShtrixCode},\nCountMedicine:{item.CountMedicine}\n");                       
+                        }
+                        Console.Write("0.Back->");
+                        var chooseD0 = int.Parse(Console.ReadLine());
+                        if (chooseD0 == 0)
+                        {
+                            Console.Clear();
+                            ActionMedicines();
+                        }
+                    }
+                }
+            }
+            if(chooseC == 2)
+            {
+                while (true)
+                {
+                    Console.Clear();
+                    SelesMedicine();
+
+                    SelesMedicineContext selesMedicineContext = new SelesMedicineContext();
+                    StoregMedicineContext storegMedicineContext = new StoregMedicineContext();
+                    ISelesMedicineService selesMedicineService = new SelesMedicinesService(selesMedicineContext,storegMedicineContext);
+
+                    var chooseE = int.Parse(Console.ReadLine());
+                    if(chooseE == 1)
+                    {
+                        selesMedicineService.SelesMedicine("Amizon",5);
+                        Console.Write("0.Back->");
+                        var chooseB0 = int.Parse(Console.ReadLine());
+                        if (chooseB0 == 0)
+                        {
+                            Console.Clear();
+                            ActionMedicines();
+                        }
+                    } 
                 }
             }
         }
@@ -253,6 +370,13 @@ static void ActionMedicines()
     Console.WriteLine("3.SearchMedicine");
     Console.WriteLine("4.SortMedicane");
     Console.WriteLine("5.UpdateMedicine");
+    Console.WriteLine("6.OverdueMedicines");
+}
+static void SelesMedicine()
+{
+    Console.WriteLine("1.SelesMedicine");
+    Console.WriteLine("2.GetAllMedicine");
+    Console.WriteLine("3.ChackOutput");
 }
 static void EnterMenu()
 {

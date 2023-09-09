@@ -6,7 +6,6 @@ public interface IStoregMedicinesService
     void UpdateMedicine(StoregMedicine storegMedicine);
     void DeleteMedicine(string pharmacyName);
     StoregMedicine SearchMedicine(string pharmacyName);
-    IEnumerable<StoregMedicine> SortMedicane();
-    
-  
+    List<StoregMedicine> SortMedicane();
+    IEnumerable<StoregMedicine> OverdueMedicines();
 }
